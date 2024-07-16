@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Form</title>
+  <link rel="stylesheet" href="/stylep.css">
+</head>
+<body>
+  <h1>Project Form</h1>
+  <form action="/projects" method="POST" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea><br>
+
+    <label for="sourceCode">Source Code:</label>
+    <input type="text" id="sourceCode" name="sourceCode" required><br>
+
+    <label for="demo">Demo:</label>
+    <input type="text" id="demo" name="demo" required><br>
+
+    <label for="images">Images:</label>
+    <input type="file" id="images" name="images" multiple required><br>
+
+    <label for="techStack">Tech Stack:</label>
+    <input type="text" id="techStack" name="techStack" required><br>
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type" required><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>Projects</h2>
+  <ul>
+    <% projects.forEach(project => { %>
+      <li>
+        <h3><%= project.name %></h3>
+        <p><%= project.description %></p>
+        <p>Source Code: <a href="<%= project.sourceCode %>"><%= project.sourceCode %></a></p>
+        <p>Demo: <a href="<%= project.demo %>"><%= project.demo %></a></p>
+        <p>Images: 
+          <% project.images.forEach(image => { %>
+            <img src="/uploads/<%= image %>" alt="<%= project.name %>" style="max-width: 100px;">
+          <% }) %>
+        </p>
+        <p>Tech Stack: <%= project.techStack %></p>
+        <p>Type: <%= project.type %></p>
+        <!-- edit project -->
+        <form action="/projects/<%= project._id %>/edit" method="GET">
+          <button type="submit">Edit Project</button>
+        </form>
+        <!-- Delete Button Form -->
+        <form action="/projects/<%= project._id %>" method="POST">
+          <button type="submit">Delete Project</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
