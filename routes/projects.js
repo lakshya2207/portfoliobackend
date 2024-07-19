@@ -125,7 +125,7 @@ router.post('/:id', async (req, res) => {
 
 
 //deletes project
-router.post('/:id', async (req, res) => {
+router.post('/delete/:id', async (req, res) => {
   const id = req.params.id;
 
   try {
