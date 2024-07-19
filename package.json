@@ -9,10 +9,12 @@
   "author": "Lakshya Sharma",
   "license": "ISC",
   "dependencies": {
+    "cloudinary": "^2.3.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "express-fileupload": "^1.5.1",
     "mongoose": "^8.5.0",
     "multer": "^1.4.5-lts.1"
   }

@@ -4,7 +4,7 @@ const app = express()
 const port = 3000
 const cors =require('cors');
 require('dotenv').config();
-
+const fileUpload= require('express-fileupload');
 
 const path = require('path');
 const uri= process.env.MONGODB_URI
@@ -16,13 +16,13 @@ app.use(express.static(path.join(__dirname,'/public')));
 
 app.use('/uploads', express.static('uploads'));
 app.set('view engine','ejs');
-
+app.use(fileUpload({
+  useTempFiles:true
+}))
 
 app.use(cors(
   origin="*"
 ))
-
-
 // Routes
 const introRouter = require('./routes/intro');
 app.use('/', introRouter);
@@ -35,28 +35,6 @@ app.use('/', apiRouter);
 
 const nameRoutes = require('./routes/nameRoutes');
 app.use('/api', nameRoutes);
-
-// app.get('/intro',async (req, res) => {
-//   var infodata=await intromodel.find()
-//   console.log(infodata);
-//   res.send(infodata)
-// })
-
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-// })
-
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-// })
-
-// app.get('/api', (req, res) => {
-//   var obj={
-//     name: "Lakshya Sharma",
-//     rollno:"2100020100053"
-//   }
-//   res.send(obj)
-// })
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)

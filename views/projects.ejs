@@ -43,7 +43,7 @@
         <p>Demo: <a href="<%= project.demo %>"><%= project.demo %></a></p>
         <p>Images: 
           <% project.images.forEach(image => { %>
-            <img src="/uploads/<%= image %>" alt="<%= project.name %>" style="max-width: 100px;">
+            <img src="<%= image %>" alt="<%= project.name %>" style="max-width: 100px;">
           <% }) %>
         </p>
         <p>Tech Stack: <%= project.techStack %></p>
