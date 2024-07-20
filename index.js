@@ -36,6 +36,7 @@ app.use('/', apiRouter);
 const nameRoutes = require('./routes/nameRoutes');
 app.use('/api', nameRoutes);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`)
-})
+// app.listen(port, () => {
+//   console.log(`Example app listening on port http://localhost:${port}`)
+// })
+module.exports=app;
