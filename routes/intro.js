@@ -1,8 +1,15 @@
 const express = require('express');
 const Intro = require('../models/introModel');
 const router = express.Router();
-
+// const isAuthenticated = require('../index');
 // Get intro data
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
+router.use(isAuthenticated)
 router.get('/', async (req, res) => {
   try {
     const intro = await Intro.findOne();
@@ -14,7 +21,7 @@ router.get('/', async (req, res) => {
 });
 
 // Create or update intro data
-router.post('/', async (req, res) => {
+router.post('/',isAuthenticated, async (req, res) => {
   try {
     let intro = await Intro.findOne();
     if (intro) {

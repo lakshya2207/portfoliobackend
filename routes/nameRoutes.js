@@ -3,17 +3,6 @@ const express = require('express');
 const router = express.Router();
 const Name = require('../models/nameModel');
 
-// POST /api/submitName
-router.get('/getNames', async (req, res) => {
-  try {
-    const names = await Name.find({});
-    res.status(200).json(names);
-  } catch (err) {
-    res.send("phat gya code")
-    // res.status(500).json({ message: 'Server error', error: err.message });
-  }
-});
-
 router.post('/submitName', async (req, res) => {
   const { name } = req.body;
 
