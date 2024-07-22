@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const app = express()
-const port = 3000
+// const port = 3000
 const cors =require('cors');
 require('dotenv').config();
 const fileUpload= require('express-fileupload');
@@ -25,7 +25,7 @@ app.use(passport.session());
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}));
-app.use(express.static(path.join(__dirname,'/public')));
+app.use(express.static(path.join(__dirname,'/views')));
 
 app.use('/uploads', express.static('uploads'));
 app.set('view engine','ejs');
@@ -70,7 +70,7 @@ app.get('/logout', (req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`)
-})
-module.exports=isAuthenticated;
+// app.listen(port, () => {
+//   console.log(`Example app listening on port http://localhost:${port}`)
+// })
+module.exports=app;
